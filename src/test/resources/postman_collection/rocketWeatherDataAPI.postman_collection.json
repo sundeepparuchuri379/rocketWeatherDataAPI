@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "78ae5aa7-6c56-4b93-a220-c6671575fd6e",
+		"name": "rocketWeatherDataAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "1a68a3c1ba994774b5c53946dd67c659",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "b1b91C089085457fa96b7fF0aCae1303",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rocketweatherdataapi.us-e2.cloudhub.io/v1/rocketcompanies/ready",
+					"protocol": "https",
+					"host": [
+						"rocketweatherdataapi",
+						"us-e2",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"v1",
+						"rocketcompanies",
+						"ready"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Weather Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "1a68a3c1ba994774b5c53946dd67c659",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "b1b91C089085457fa96b7fF0aCae1303",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rocketweatherdataapi.us-e2.cloudhub.io/v1/rocketcompanies/weatherData?ipAddress={ipAddress}",
+					"protocol": "https",
+					"host": [
+						"rocketweatherdataapi",
+						"us-e2",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"v1",
+						"rocketcompanies",
+						"weatherData"
+					],
+					"query": [
+						{
+							"key": "ipAddress",
+							"value": "{ipAddress}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
