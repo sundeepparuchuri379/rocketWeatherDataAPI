@@ -78,7 +78,7 @@ payload.locations mapObject ({
 	"Ip Address": vars.ipAddress,
 	"Postal Code" : vars.postalCode,
 	Timezone: $.tz,
-	Datetime: now() as DateTime as String { format: "yyyy-MM-dd HH:mm:ss"},
+	Datetime: now() >> "CST" as String { format: "yyyy-MM-dd HH:mm:ss"},
 	"Weather Conditions": {
 		"High Temp": $.values.maxt[0],
 		"Low Temp": $.values.mint[0],
