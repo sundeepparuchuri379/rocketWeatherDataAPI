@@ -1,0 +1,12 @@
+## References for app name and version
+app:
+  name: "weatherDataAPI"
+  version: "1.0.0-SNAPSHOT"
+  baseUrl: "/v1/rocketcompanies/*"
+  
+  
+keystore:
+  Path: "certs/server-keystore.jks"
+  Password: "![1d6BF02pKPGiUiOcxvop+Q==]"
+  keyPassword: "![1d6BF02pKPGiUiOcxvop+Q==]"
+  Alias: "mule-server"
