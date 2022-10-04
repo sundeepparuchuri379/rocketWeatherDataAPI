@@ -1,12 +1,12 @@
 api:
-  id:"18178259"
+  id: '18190044'
 
 geolocation:
  api:
    host: "ip-geolocation.whoisxmlapi.com"
    port: "443"
    path: "/api/v1"
-   apiKey: "at_NKAvQJugkoo2m4PgjM8yCOW3yoO4D"
+   apiKey: "![W1JiQAnpAXXbetF/SfMQeQAGXtFx0N7b7YesDj/0lZPBoiE/6HK5s9Lz47mEUn7C]"
 
 
 weather:
@@ -14,7 +14,7 @@ weather:
    host: "weather.visualcrossing.com"
    port: "443"
    path: "/VisualCrossingWebServices/rest/services/weatherdata/forecast"
-   key: "8YBPKGUNGYSVUNVF46NFUMKMM"
+   key: "![mgs5Lyt5YKo0MYLfv9eiDHy53pGYZwwK2jF9pFZ7M3A=]"
    aggregateHours: "24"
    unitGroups: "us"
    contentType: "json"
@@ -25,8 +25,5 @@ zipCodeList:
    host: "app.zipcodebase.com"
    port: "443"
    path: "/api/v1/code/state"
-   apiKey: "b962d6d0-3da4-11ed-acfd-3d9bc3cb78d6"
+   apiKey: "![gibzf7i1vhzqUvJJpFXvDnfL30NiTnKJkgsBXTrrBmAw966NuJT251xLEF0eZYZq]"
    country: "us"
-   
-scheduler:
-  frequency:"7"
