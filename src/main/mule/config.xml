@@ -19,6 +19,9 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	 
 	 <http:listener-config name="rocketweatherapi-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8082" protocol="HTTPS">
+			<reconnection >
+				<reconnect />
+			</reconnection>
 			<tls:context >
 				<tls:key-store type="jks" path="${secure::keystore.Path}" keyPassword="${secure::keystore.keyPassword}" password="${secure::keystore.Password}" alias="${secure::keystore.Alias}"/>
 			</tls:context>
@@ -32,18 +35,32 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
    	<secure-properties:config name="Env_Properties_Config" doc:name="Secure Properties Config" doc:id="c0e0e066-262b-4adb-981c-d03e6727536c" file="properties/app-${env}.yaml" key="${CredentialVaultKey}" />
 	
 	<http:request-config name="GeoLocation_Request_configuration" doc:name="HTTP Request configuration" doc:id="b40e67ea-c0e6-4d50-bb8f-9e8f69da3e43" >
-		<http:request-connection protocol="HTTPS" host="${secure::geolocation.api.host}" port="${secure::geolocation.api.port}" />
+		<http:request-connection protocol="HTTPS" host="${secure::geolocation.api.host}" port="${secure::geolocation.api.port}" >
+			<reconnection >
+				<reconnect />
+			</reconnection>
+		</http:request-connection>
 	</http:request-config>
 	
 	<http:request-config name="WeatherAPI_Request_configuration" doc:name="HTTP Request configuration" doc:id="78534635-d3a6-4ce3-a5bc-f898af73651a" >
-		<http:request-connection protocol="HTTPS" host="${secure::weather.api.host}" port="${secure::weather.api.port}" />
+		<http:request-connection protocol="HTTPS" host="${secure::weather.api.host}" port="${secure::weather.api.port}" >
+			<reconnection >
+				<reconnect />
+			</reconnection>
+		</http:request-connection>
 	</http:request-config>
 	
 	<http:request-config name="ZipCodeBase_Request_configuration" doc:name="HTTP Request configuration" doc:id="2b8bf907-01c1-4d4b-b086-be605e79a0f5" >
-		<http:request-connection protocol="HTTPS" host="${secure::zipCodeList.api.host}" port="${secure::zipCodeList.api.port}" />
+		<http:request-connection protocol="HTTPS" host="${secure::zipCodeList.api.host}" port="${secure::zipCodeList.api.port}" >
+			<reconnection >
+				<reconnect />
+			</reconnection>
+		</http:request-connection>
 	</http:request-config>
 	
 	  <api-gateway:autodiscovery apiId="${secure::api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="6a39f4e3-a3b0-49d3-94dd-562ca333fdd5" flowRef="api-main" />
+	    <apikit:config name="api-config" api="resource::45656117-6398-48e5-89f4-0bd3f47af371:rocketweatherdataapi:1.0.2:raml:zip:api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	
 	
 	<error-handler name="ErrorHandler">
 		<on-error-propagate type="APIKIT:BAD_REQUEST">
@@ -126,7 +143,13 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 
 		</on-error-propagate>
 	</error-handler>
-	</mule>
+	<error-handler name="Error_Handler_Generic" doc:id="44d2fbf9-b576-4faf-941b-49f0b4fc1c08" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a125bed4-5911-4d9a-8814-857b5c447d53" >
+			<logger level="ERROR" doc:name="Logger" doc:id="284769a8-1c7e-47c1-92f9-6c2dce152a06" message="#['Error in Component: ' ++ error.failingComponent ++ ' ; Error Description:' ++ error.detailedDescription]"/>
+		</on-error-propagate>
+	</error-handler>
+	
+</mule>
    
 	
 
